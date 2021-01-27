@@ -124,11 +124,29 @@ t + geom_histogram(binwidth = 10,
 
 # another way:
 
+
 t<- ggplot(data=Movies)
 
 t + geom_histogram(binwidth = 10,
                    aes(x=AudienceRating),
                    fill = "White", colour = "Blue")
+t + geom_histogram(binwidth = 10,
+                   aes(x=AudienceRating),
+                   fill = "White", colour = "Blue")
+
+t + geom_histogram(binwidth = 10,
+                   aes(x=CriticRating),
+                   fill = "White", colour = "Blue")
+
+
+t + geom_histogram(binwidth = 10,
+                   aes(x=CriticRating, fill = Genre),
+                  , colour = "Black")
+
+## Testing
+
+
+
 
 
 
