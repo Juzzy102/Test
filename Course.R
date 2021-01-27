@@ -138,12 +138,32 @@ t + geom_histogram(binwidth = 10,
                    aes(x=CriticRating),
                    fill = "White", colour = "Blue")
 
+## Statistical Transformations
 
-t + geom_histogram(binwidth = 10,
-                   aes(x=CriticRating, fill = Genre),
-                  , colour = "Black")
+u <- ggplot(data = Movies, aes(x = CriticRating, y = AudienceRating, colour = Genre))
 
-## Testing
+u + geom_point() + geom_smooth(fill = NA)
+
+
+#boxplots
+
+u <- ggplot(data = Movies, aes(x = Genre, y = AudienceRating, colour = Genre))
+u + geom_boxplot()
+u + geom_boxplot(size = 1.2)
+
+u + geom_boxplot(size = 1.2) + geom_point()
+
+# tip
+u + geom_boxplot(size = 1.2) + geom_jitter()
+
+# another way
+
+u + geom_jitter() + geom_boxplot(size = 1.2, alpha = 0.5)
+
+# Critic Rating Challenge
+
+z <- ggplot(data= Movies, aes(x = Genre, y = CriticRating, colour = Genre))
+z + geom_jitter() +geom_boxplot(size = 1.2, alpha = 0.5) 
 
 
 
