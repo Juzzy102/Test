@@ -166,7 +166,121 @@ z <- ggplot(data= Movies, aes(x = Genre, y = CriticRating, colour = Genre))
 z + geom_jitter() +geom_boxplot(size = 1.2, alpha = 0.5) 
 
 
+# Facets
 
+v <- ggplot(data = Movies, aes(x= BudgetMillions))
+v + geom_histogram(binwidth = 10, aes(fill = Genre), colour = "Black")
+
+# Creating a histogram for each genre - use facets
+
+v + geom_histogram(binwidth = 10, aes(fill = Genre), 
+                   colour = "Black") +
+  facet_grid(Genre~., scales = "free")
+
+#scatter plots
+
+w <- ggplot(data = Movies, aes(x = CriticRating, y = AudienceRating,
+                               colour = Genre))
+w + geom_point(size = 3) + facet_grid(Year~.)
+
+w + geom_point(aes(size = BudgetMillions)) + 
+  geom_smooth() + 
+  facet_grid(Genre~Year)
+
+#coordinates
+
+#Limiting the axis
+
+
+m <- ggplot(data = Movies, aes(x = CriticRating, y = AudienceRating, 
+                               size = BudgetMillions, colour = Genre))
+
+m + geom_point()
+
+m + geom_point() + 
+  xlim(50,100) + 
+  ylim(50,100) 
+
+n <- ggplot(data = Movies, aes(x = BudgetMillions))
+
+# Wrong way of doing things
+
+n + geom_histogram(binwidth = 10, aes(fill = Genre), colour = "Black") +
+  ylim(50, 100)
+
+# Zooming in
+
+n + geom_histogram(binwidth = 10, aes(fill = Genre), colour = "Black") +
+  coord_cartesian(ylim = c(0,50))
+
+w + geom_point(aes(size = BudgetMillions)) + 
+  geom_smooth() + 
+  facet_grid(Genre~Year) +
+  coord_cartesian(ylim = c(0,100))
+
+
+# Themes
+
+o <- ggplot(data = Movies, aes(x = BudgetMillions))
+h <- o + geom_histogram(binwidth = 10, aes(fill = Genre), colour = "Black")
+
+# Label
+h + xlab("Money Axis") +
+  ylab("Number of Movies")
+
+
+# Label Formatting
+
+h + xlab("Money Axis") +
+  ylab("Number of Movies") + 
+  theme(axis.title.x = element_text(colour = "DarkGreen", size = 15), 
+        axis.title.y = element_text(colour = "Red", size = 15))
+
+# Tick mark formatting
+
+h + xlab("Money Axis") +
+  ylab("Number of Movies") + 
+  theme(axis.title.x = element_text(colour = "DarkGreen", size = 15), 
+        axis.title.y = element_text(colour = "Red", size = 15),
+        axis.text.x = element_text(size = 15),
+        axis.text.y = element_text(size = 15))
+
+
+?theme
+
+# Legend Formatting
+
+h + xlab("Money Axis") +
+  ylab("Number of Movies") + 
+  theme(axis.title.x = element_text(colour = "DarkGreen", size = 15), 
+        axis.title.y = element_text(colour = "Red", size = 15),
+        axis.text.x = element_text(size = 15),
+        axis.text.y = element_text(size = 15),
+        legend.title = element_text(size = 15),
+        legend.text = element_text(size = 15),
+        legend.position = c(1,1),
+        legend.justification = c(1,1)
+        
+        )
+
+# Title of plot
+
+h + xlab("Money Axis") +
+  ylab("Number of Movies") +
+  ggtitle("Movie Budget Distribution") +
+  theme(axis.title.x = element_text(colour = "DarkGreen", size = 15), 
+        axis.title.y = element_text(colour = "Red", size = 15),
+        axis.text.x = element_text(size = 15),
+        axis.text.y = element_text(size = 15),
+        legend.title = element_text(size = 15),
+        legend.text = element_text(size = 15),
+        legend.position = c(1,1),
+        legend.justification = c(1,1),
+        
+        plot.title = element_text(colour ="DarkBlue",
+                                  size = 15, family = "Courier")
+        
+  )
 
 
 
